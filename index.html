@@ -19,14 +19,14 @@
                     <h1>TO DO LIST</h1>
                     <div class="mb-3">
                         <label for="todo" class="form-label">Todo Input</label>
-                        <input type="text" class="form-control" id="todo" v-model="todoElem">
+                        <input type="text" class="form-control" id="todo" v-model="todoElem.text" @keyup.enter="addTodo">
                       </div>
                       
                     <button class="btn btn-primary" @click="addTodo">Aggiungi</button>
         
                     <ul class="list-group">
-                        <li class="list-group-item text-start" v-for="(elem, index) in todoArray" :key="index">
-                            {{ elem }} 
+                        <li class="list-group-item text-start" v-for="(elem, index) in todoArray" :key="index" :class="elem.done ? 'text-decoration-line-through' :'' " @click="lineThroughClick(index)">
+                            {{ elem.text }} 
                             <button class="btn btn-warning btn-sm text-end" @click="removeTodo">Rimuovi</button>
                         </li>
                     </ul>
